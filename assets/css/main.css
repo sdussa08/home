@@ -1,12 +1,6 @@
 @import url(font-awesome.min.css);
 @import url(https://fonts.googleapis.com/css?family=Pattaya|Work+Sans:400,200,300);
 
-/*
-	Radius by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
-*/
-
 /* Reset */
 
 	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
@@ -909,30 +903,39 @@
 /* Columns */
 
 	.columns {
-		position: relative;
-		-moz-column-count: 4;
-		-webkit-column-count: 4;
-		column-count: 4;
-		-moz-column-gap: 1em;
-		-webkit-column-gap: 1em;
-		column-gap: 1em;
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 1.25em;
 	}
 
 		.columns .image {
 			position: relative;
-			display: inline-block;
-			margin: 0 0 .5em;
+			display: block;
+			margin: 0;
 			width: 100%;
 			overflow: hidden;
+			border-radius: 12px;
+			background: #f1f3f5;
+			box-shadow: 0 5px 18px rgba(20, 35, 50, 0.12);
+			transition: transform 0.25s ease, box-shadow 0.25s ease;
 		}
 
 			.columns .image img {
+				display: block;
+				width: 100%;
+				aspect-ratio: 4 / 3;
+				object-fit: cover;
 				-moz-transition: -moz-transform 0.2s ease-in-out;
 				-webkit-transition: -webkit-transform 0.2s ease-in-out;
 				-ms-transition: -ms-transform 0.2s ease-in-out;
 				transition: transform 0.2s ease-in-out;
 				-webkit-backface-visibility: hidden;
 				-webkit-transform: translate3D(0, 0, 0);
+			}
+
+			.columns .image:hover {
+				transform: translateY(-4px);
+				box-shadow: 0 12px 26px rgba(20, 35, 50, 0.18);
 			}
 
 			.columns .image:hover img {
@@ -942,12 +945,18 @@
 				transform: scale(1.1);
 			}
 
-		@media screen and (max-width: 736px) {
+			@media screen and (max-width: 980px) {
+
+				.columns {
+					grid-template-columns: repeat(3, minmax(0, 1fr));
+				}
+
+			}
+
+			@media screen and (max-width: 736px) {
 
 			.columns {
-				-moz-column-count: 2;
-				-webkit-column-count: 2;
-				column-count: 2;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
 			}
 
 		}
@@ -955,9 +964,7 @@
 		@media screen and (max-width: 480px) {
 
 			.columns {
-				-moz-column-count: 1;
-				-webkit-column-count: 1;
-				column-count: 1;
+				grid-template-columns: minmax(0, 1fr);
 			}
 
 		}
@@ -1381,11 +1388,12 @@
 /* Main */
 
 	#main {
-		padding: 2em;
+		padding: 2.5em 2em;
 	}
 
 		#main .inner {
-			max-width: 100%;
+			max-width: 90rem;
+			margin: 0 auto;
 		}
 
 /* Footer */
